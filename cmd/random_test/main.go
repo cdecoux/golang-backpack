@@ -1,9 +1,9 @@
 package main
 
 import (
+	backpack "backpack/pkg"
 	log "github.com/sirupsen/logrus"
 	"os"
-	sandboxTools "sandbox/pkg"
 )
 
 func main() {
@@ -27,13 +27,13 @@ func main() {
 	mapOfWeights["b"] = 20 // ~90%
 	mapOfWeights["c"] = 1 // ~5%
 
-	ds, err := sandboxTools.NewDistributionSelector(mapOfWeights)
+	ds, err := backpack.NewDistributionSelector(mapOfWeights)
 	if err != nil {
 		return
 	}
 
 	singleThreadedTime, singleThreadedResults :=
-		sandboxTools.TimeOf(func() interface{} {
+		backpack.TimeOf(func() interface{} {
 			// Init a Map of Counts
 			mapOfCounts := make(map[interface{}]int)
 
@@ -49,7 +49,7 @@ func main() {
 	})
 
 	multiThreadedTime, multiThreadedResults :=
-		sandboxTools.TimeOf(func() interface{} {
+		backpack.TimeOf(func() interface{} {
 			// Init a Map of Counts
 			mapOfCounts := make(map[interface{}]int)
 			results, err := ds.SelectRandomN(10000000, 5)
@@ -66,7 +66,7 @@ func main() {
 		})
 
 	multiThreaded1Time, multiThreaded1Results :=
-		sandboxTools.TimeOf(func() interface{} {
+		backpack.TimeOf(func() interface{} {
 			// Init a Map of Counts
 			mapOfCounts := make(map[interface{}]int)
 			results, err := ds.SelectRandomN(10000000, 1)

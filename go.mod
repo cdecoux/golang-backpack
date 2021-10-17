@@ -1,4 +1,4 @@
-module sandbox
+module backpack
 
 go 1.17
 

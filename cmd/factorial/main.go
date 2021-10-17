@@ -1,10 +1,10 @@
 package main
 
 import (
+	backpack "backpack/pkg"
+	backpackMath "backpack/pkg/math"
 	log "github.com/sirupsen/logrus"
 	"os"
-	sandboxUtil "sandbox/pkg"
-	mathUtil "sandbox/pkg/math"
 	"strconv"
 )
 
@@ -32,8 +32,8 @@ func main() {
 	factorial, _ := strconv.Atoi(os.Args[1])
 	parallelism, _ := strconv.Atoi(os.Args[2])
 
-	factorialTime, factorialResult := sandboxUtil.TimeOf(func() interface{} {
-		return mathUtil.FactorialParallel(factorial, parallelism)
+	factorialTime, factorialResult := backpack.TimeOf(func() interface{} {
+		return backpackMath.FactorialParallel(factorial, parallelism)
 	})
 
 	log.Debug(factorialResult)
