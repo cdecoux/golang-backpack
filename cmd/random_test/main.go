@@ -4,7 +4,6 @@ import (
 	log "github.com/sirupsen/logrus"
 	"os"
 	sandboxTools "sandbox/pkg"
-	mathTools "sandbox/pkg/math"
 )
 
 func main() {
@@ -28,7 +27,7 @@ func main() {
 	mapOfWeights["b"] = 20 // ~90%
 	mapOfWeights["c"] = 1 // ~5%
 
-	ds, err := mathTools.NewDistributionSelector(mapOfWeights)
+	ds, err := sandboxTools.NewDistributionSelector(mapOfWeights)
 	if err != nil {
 		return
 	}
