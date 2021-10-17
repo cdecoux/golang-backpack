@@ -34,6 +34,7 @@ func NewDistributionSelector(distribution map[interface{}]int) (*distributionSel
 
 func (self *distributionSelector) getSum() (int, error)  {
 
+	// First Check for when sum is 0. After this, sum should be a positive number or -1 (for errors)
 	if self.cachedSum == 0 { // If cachedSum hasn't been calculated yet
 		for _, weight := range self.distribution {
 
@@ -45,11 +46,16 @@ func (self *distributionSelector) getSum() (int, error)  {
 			// Add weight to sum
 			self.cachedSum += weight
 		}
-	} else if self.cachedSum < 0 { // If cached sum was previously calculated and wasn't positive
-		return -1, errors.New("distribution weights are not a positive integer")
+	} else if self.cachedSum == -1 { // If cached sum was previously calculated and wasn't positive
+		return -1, errors.New("distribution was not correctly initialized")
 	}
 
-	return self.cachedSum, nil
+	if self.cachedSum > 0 {
+		return self.cachedSum, nil
+	} else {
+		return -1, errors.New("distribution was not correctly initialized")
+	}
+
 }
 
 func (self *distributionSelector) SelectRandom() (interface{}, error) {
