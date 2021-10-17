@@ -11,7 +11,8 @@ type DistributionSelector interface {
 	SelectRandom() (interface{}, error)
 }
 
-type distributionSelector struct {
+type distributionSelectorStruct struct {
+	DistributionSelector
 	distribution map[interface{}]int
 	cachedSum int
 }
@@ -22,8 +23,8 @@ type distributionSelector struct {
 	Should there be an issue with the values, an error will be returned.
 	An optional integer can be passed in to set the parallelism (used in selectRandomN)
 */
-func NewDistributionSelector(distribution map[interface{}]int) (*distributionSelector, error) {
-	ds := &distributionSelector{
+func NewDistributionSelector(distribution map[interface{}]int) (DistributionSelector, error) {
+	ds := &distributionSelectorStruct{
 		distribution: distribution,
 		cachedSum: 0,
 	}
@@ -37,7 +38,7 @@ func NewDistributionSelector(distribution map[interface{}]int) (*distributionSel
 	return ds, nil
 }
 
-func (self *distributionSelector) getSum() (int, error)  {
+func (self *distributionSelectorStruct) getSum() (int, error)  {
 
 	// First Check for when sum is 0. After this, sum should be a positive number or -1 (for errors)
 	if self.cachedSum == 0 { // If cachedSum hasn't been calculated yet
@@ -63,7 +64,7 @@ func (self *distributionSelector) getSum() (int, error)  {
 
 }
 
-func (self *distributionSelector) SelectRandom() (interface{}, error) {
+func (self *distributionSelectorStruct) SelectRandom() (interface{}, error) {
 
 	sum, err := self.getSum()
 	if err != nil {
@@ -89,7 +90,7 @@ func (self *distributionSelector) SelectRandom() (interface{}, error) {
 	Get multiple random selections. 'num' specifies how many.
 	Apparently this is slower the more parallelism you put in. (not just due to limited cores)
 */
-func (self *distributionSelector) SelectRandomN(num int, parallelism int) ([]interface{}, error) {
+func (self *distributionSelectorStruct) SelectRandomN(num int, parallelism int) ([]interface{}, error) {
 
 	// Init slice for holding resulting random selections
 	results := make([]interface{}, 0, num)
