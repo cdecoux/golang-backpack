@@ -6,6 +6,11 @@ import (
 	"math/rand"
 )
 
+type DistributionSelector interface {
+	SelectRandomN(num int, parallelism int) ([]interface{}, error)
+	SelectRandom() (interface{}, error)
+}
+
 type distributionSelector struct {
 	distribution map[interface{}]int
 	cachedSum int
