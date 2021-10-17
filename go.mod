@@ -1,4 +1,4 @@
-module backpack
+module github.com/cdecoux/golang-backpack
 
 go 1.17
 

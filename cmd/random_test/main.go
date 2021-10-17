@@ -1,7 +1,7 @@
 package main
 
 import (
-	backpack "backpack/pkg"
+	backpack "github.com/cdecoux/golang-backpack/pkg"
 	log "github.com/sirupsen/logrus"
 	"os"
 )

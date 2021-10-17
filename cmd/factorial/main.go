@@ -1,8 +1,8 @@
 package main
 
 import (
-	backpack "backpack/pkg"
-	backpackMath "backpack/pkg/math"
+	backpack "github.com/cdecoux/golang-backpack/pkg"
+	backpackMath "github.com/cdecoux/golang-backpack/pkg/math"
 	log "github.com/sirupsen/logrus"
 	"os"
 	"strconv"
