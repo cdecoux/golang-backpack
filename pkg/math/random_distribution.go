@@ -7,7 +7,7 @@ import (
 )
 
 type distributionSelector struct {
-	distribution map[string]int
+	distribution map[interface{}]int
 	cachedSum int
 }
 
@@ -17,7 +17,7 @@ type distributionSelector struct {
 	Should there be an issue with the values, an error will be returned.
 	An optional integer can be passed in to set the parallelism (used in selectRandomN)
 */
-func NewDistributionSelector(distribution map[string]int) (*distributionSelector, error) {
+func NewDistributionSelector(distribution map[interface{}]int) (*distributionSelector, error) {
 	ds := &distributionSelector{
 		distribution: distribution,
 		cachedSum: 0,
@@ -52,11 +52,11 @@ func (self *distributionSelector) getSum() (int, error)  {
 	return self.cachedSum, nil
 }
 
-func (self *distributionSelector) SelectRandom() (string, error) {
+func (self *distributionSelector) SelectRandom() (interface{}, error) {
 
 	sum, err := self.getSum()
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
 	selection := rand.Intn(sum) + 1
@@ -78,16 +78,16 @@ func (self *distributionSelector) SelectRandom() (string, error) {
 	Get multiple random selections. 'num' specifies how many.
 	Apparently this is slower the more parallelism you put in. (not just due to limited cores)
 */
-func (self *distributionSelector) SelectRandomN(num int, parallelism int) ([]string, error) {
+func (self *distributionSelector) SelectRandomN(num int, parallelism int) ([]interface{}, error) {
 
 	// Init slice for holding resulting random selections
-	results := make([]string, 0, num)
-	resultsPartialChan := make(chan []string, parallelism)
+	results := make([]interface{}, 0, num)
+	resultsPartialChan := make(chan []interface{}, parallelism)
 	errorChan := make(chan error)
 
 	for i := 1; i <= parallelism; i++ {
 		go func(start int) {
-			resultsPartial := make([]string, 0, (num/parallelism) + 1)
+			resultsPartial := make([]interface{}, 0, (num/parallelism) + 1)
 
 			for i := start; i <= num; i += parallelism {
 				selection, err := self.SelectRandom()

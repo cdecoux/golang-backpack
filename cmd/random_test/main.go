@@ -23,10 +23,10 @@ func main() {
 
 	log.SetLevel(logLevel)
 	// Get a Map of Weights
-	mapOfWeights := make(map[string]int)
-	mapOfWeights["a"] = 10 // 25%
-	mapOfWeights["b"] = 20 // 50%
-	mapOfWeights["c"] = 10 // 25%
+	mapOfWeights := make(map[interface{}]int)
+	mapOfWeights["a"] = 1 // ~5%
+	mapOfWeights["b"] = 20 // ~90%
+	mapOfWeights["c"] = 1 // ~5%
 
 	ds, err := mathTools.NewDistributionSelector(mapOfWeights)
 	if err != nil {
@@ -36,7 +36,7 @@ func main() {
 	singleThreadedTime, singleThreadedResults :=
 		sandboxTools.TimeOf(func() interface{} {
 			// Init a Map of Counts
-			mapOfCounts := make(map[string]int)
+			mapOfCounts := make(map[interface{}]int)
 
 			for i := 0; i < 10000000; i++ {
 				selection, err := ds.SelectRandom()
@@ -52,7 +52,7 @@ func main() {
 	multiThreadedTime, multiThreadedResults :=
 		sandboxTools.TimeOf(func() interface{} {
 			// Init a Map of Counts
-			mapOfCounts := make(map[string]int)
+			mapOfCounts := make(map[interface{}]int)
 			results, err := ds.SelectRandomN(10000000, 5)
 			if err != nil {
 				log.Error(err)
@@ -69,7 +69,7 @@ func main() {
 	multiThreaded1Time, multiThreaded1Results :=
 		sandboxTools.TimeOf(func() interface{} {
 			// Init a Map of Counts
-			mapOfCounts := make(map[string]int)
+			mapOfCounts := make(map[interface{}]int)
 			results, err := ds.SelectRandomN(10000000, 1)
 			if err != nil {
 				log.Error(err)
