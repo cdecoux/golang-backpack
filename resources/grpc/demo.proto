@@ -1,0 +1,21 @@
+syntax = "proto3";
+package demo;
+
+// Golang Options
+option go_package = "github.com/cdecoux/golang-backpack";
+
+import "google/protobuf/timestamp.proto";
+
+service DemoServer {
+  rpc Demo (stream DemoRequest) returns (stream DemoResponse) {}
+}
+
+message DemoRequest {}
+
+message DemoResponse {
+  google.protobuf.Timestamp time = 1;
+  int64 random_number = 2;
+}
+
+
+
