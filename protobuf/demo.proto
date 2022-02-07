@@ -2,7 +2,7 @@ syntax = "proto3";
 package demo;
 
 // Golang Options
-option go_package = "github.com/cdecoux/golang-backpack";
+option go_package = "./demo";
 
 import "google/protobuf/timestamp.proto";
 
