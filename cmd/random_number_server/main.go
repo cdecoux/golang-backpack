@@ -61,6 +61,31 @@ func (server *demoServer) GetRandomNumber(ctx context.Context, req *pb.GetRandom
 	return res, nil
 }
 
-func (server *demoServer) GetRandomNumberStream(req *pb.GetRandomNumberRequest, stream pb.RandomNumber_GetRandomNumberStreamServer) (err error) {
-	return status.Errorf(codes.Unimplemented, "method GetRandomNumberStream not implemented")
+func (server *demoServer) GetRandomNumberStream(req *pb.GetRandomNumberStreamRequest, stream pb.RandomNumber_GetRandomNumberStreamServer) (err error) {
+	if req.Count == -1 {
+		for {
+			err := stream.Send(&pb.GetRandomNumberStreamResponse{
+				RandomNumber: rand.Int63(),
+				Time:         timestamppb.Now(),
+			})
+			if err != nil {
+				return err
+			}
+		}
+	} else if req.Count > 0 {
+		for i := int64(0); i < req.Count; i++ {
+			err := stream.Send(&pb.GetRandomNumberStreamResponse{
+				RandomNumber: rand.Int63(),
+				Time:         timestamppb.Now(),
+			})
+			if err != nil {
+				return err
+			}
+		}
+
+	} else {
+		return status.Errorf(codes.InvalidArgument, "argument GetRandomNumberStreamRequest.Count must be a number greater than 0 or -1 (for unlimited)")
+	}
+
+	return nil
 }

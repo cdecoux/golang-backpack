@@ -118,6 +118,108 @@ func (x *GetRandomNumberResponse) GetTime() *timestamppb.Timestamp {
 	return nil
 }
 
+type GetRandomNumberStreamRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Count int64 `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+}
+
+func (x *GetRandomNumberStreamRequest) Reset() {
+	*x = GetRandomNumberStreamRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_demo_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetRandomNumberStreamRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetRandomNumberStreamRequest) ProtoMessage() {}
+
+func (x *GetRandomNumberStreamRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_demo_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetRandomNumberStreamRequest.ProtoReflect.Descriptor instead.
+func (*GetRandomNumberStreamRequest) Descriptor() ([]byte, []int) {
+	return file_demo_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetRandomNumberStreamRequest) GetCount() int64 {
+	if x != nil {
+		return x.Count
+	}
+	return 0
+}
+
+type GetRandomNumberStreamResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	RandomNumber int64                  `protobuf:"varint,1,opt,name=random_number,json=randomNumber,proto3" json:"random_number,omitempty"`
+	Time         *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=time,proto3" json:"time,omitempty"`
+}
+
+func (x *GetRandomNumberStreamResponse) Reset() {
+	*x = GetRandomNumberStreamResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_demo_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetRandomNumberStreamResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetRandomNumberStreamResponse) ProtoMessage() {}
+
+func (x *GetRandomNumberStreamResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_demo_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetRandomNumberStreamResponse.ProtoReflect.Descriptor instead.
+func (*GetRandomNumberStreamResponse) Descriptor() ([]byte, []int) {
+	return file_demo_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetRandomNumberStreamResponse) GetRandomNumber() int64 {
+	if x != nil {
+		return x.RandomNumber
+	}
+	return 0
+}
+
+func (x *GetRandomNumberStreamResponse) GetTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Time
+	}
+	return nil
+}
+
 var File_demo_proto protoreflect.FileDescriptor
 
 var file_demo_proto_rawDesc = []byte{
@@ -132,20 +234,32 @@ var file_demo_proto_rawDesc = []byte{
 	0x0c, 0x72, 0x61, 0x6e, 0x64, 0x6f, 0x6d, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x12, 0x2e, 0x0a,
 	0x04, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f,
 	0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69,
-	0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x04, 0x74, 0x69, 0x6d, 0x65, 0x32, 0xb9, 0x01,
-	0x0a, 0x0c, 0x52, 0x61, 0x6e, 0x64, 0x6f, 0x6d, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x12, 0x50,
-	0x0a, 0x0f, 0x47, 0x65, 0x74, 0x52, 0x61, 0x6e, 0x64, 0x6f, 0x6d, 0x4e, 0x75, 0x6d, 0x62, 0x65,
-	0x72, 0x12, 0x1c, 0x2e, 0x64, 0x65, 0x6d, 0x6f, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x61, 0x6e, 0x64,
-	0x6f, 0x6d, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x1d, 0x2e, 0x64, 0x65, 0x6d, 0x6f, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x61, 0x6e, 0x64, 0x6f, 0x6d,
-	0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00,
-	0x12, 0x57, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x52, 0x61, 0x6e, 0x64, 0x6f, 0x6d, 0x4e, 0x75, 0x6d,
-	0x62, 0x65, 0x72, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x12, 0x1c, 0x2e, 0x64, 0x65, 0x6d, 0x6f,
+	0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x04, 0x74, 0x69, 0x6d, 0x65, 0x22, 0x34, 0x0a,
+	0x1c, 0x47, 0x65, 0x74, 0x52, 0x61, 0x6e, 0x64, 0x6f, 0x6d, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72,
+	0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a,
+	0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x63, 0x6f,
+	0x75, 0x6e, 0x74, 0x22, 0x74, 0x0a, 0x1d, 0x47, 0x65, 0x74, 0x52, 0x61, 0x6e, 0x64, 0x6f, 0x6d,
+	0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x23, 0x0a, 0x0d, 0x72, 0x61, 0x6e, 0x64, 0x6f, 0x6d, 0x5f, 0x6e,
+	0x75, 0x6d, 0x62, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0c, 0x72, 0x61, 0x6e,
+	0x64, 0x6f, 0x6d, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x12, 0x2e, 0x0a, 0x04, 0x74, 0x69, 0x6d,
+	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74,
+	0x61, 0x6d, 0x70, 0x52, 0x04, 0x74, 0x69, 0x6d, 0x65, 0x32, 0xc6, 0x01, 0x0a, 0x0c, 0x52, 0x61,
+	0x6e, 0x64, 0x6f, 0x6d, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x12, 0x50, 0x0a, 0x0f, 0x47, 0x65,
+	0x74, 0x52, 0x61, 0x6e, 0x64, 0x6f, 0x6d, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x12, 0x1c, 0x2e,
+	0x64, 0x65, 0x6d, 0x6f, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x61, 0x6e, 0x64, 0x6f, 0x6d, 0x4e, 0x75,
+	0x6d, 0x62, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x64, 0x65,
+	0x6d, 0x6f, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x61, 0x6e, 0x64, 0x6f, 0x6d, 0x4e, 0x75, 0x6d, 0x62,
+	0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x64, 0x0a, 0x15,
+	0x47, 0x65, 0x74, 0x52, 0x61, 0x6e, 0x64, 0x6f, 0x6d, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x53,
+	0x74, 0x72, 0x65, 0x61, 0x6d, 0x12, 0x22, 0x2e, 0x64, 0x65, 0x6d, 0x6f, 0x2e, 0x47, 0x65, 0x74,
+	0x52, 0x61, 0x6e, 0x64, 0x6f, 0x6d, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x53, 0x74, 0x72, 0x65,
+	0x61, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x23, 0x2e, 0x64, 0x65, 0x6d, 0x6f,
 	0x2e, 0x47, 0x65, 0x74, 0x52, 0x61, 0x6e, 0x64, 0x6f, 0x6d, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1c, 0x2e, 0x64, 0x65, 0x6d, 0x6f, 0x2e, 0x47,
-	0x65, 0x74, 0x52, 0x61, 0x6e, 0x64, 0x6f, 0x6d, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x00, 0x30, 0x01, 0x42, 0x08, 0x5a, 0x06, 0x2e, 0x2f, 0x64,
-	0x65, 0x6d, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00,
+	0x30, 0x01, 0x42, 0x08, 0x5a, 0x06, 0x2e, 0x2f, 0x64, 0x65, 0x6d, 0x6f, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -160,23 +274,26 @@ func file_demo_proto_rawDescGZIP() []byte {
 	return file_demo_proto_rawDescData
 }
 
-var file_demo_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_demo_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_demo_proto_goTypes = []interface{}{
-	(*GetRandomNumberRequest)(nil),  // 0: demo.GetRandomNumberRequest
-	(*GetRandomNumberResponse)(nil), // 1: demo.GetRandomNumberResponse
-	(*timestamppb.Timestamp)(nil),   // 2: google.protobuf.Timestamp
+	(*GetRandomNumberRequest)(nil),        // 0: demo.GetRandomNumberRequest
+	(*GetRandomNumberResponse)(nil),       // 1: demo.GetRandomNumberResponse
+	(*GetRandomNumberStreamRequest)(nil),  // 2: demo.GetRandomNumberStreamRequest
+	(*GetRandomNumberStreamResponse)(nil), // 3: demo.GetRandomNumberStreamResponse
+	(*timestamppb.Timestamp)(nil),         // 4: google.protobuf.Timestamp
 }
 var file_demo_proto_depIdxs = []int32{
-	2, // 0: demo.GetRandomNumberResponse.time:type_name -> google.protobuf.Timestamp
-	0, // 1: demo.RandomNumber.GetRandomNumber:input_type -> demo.GetRandomNumberRequest
-	0, // 2: demo.RandomNumber.GetRandomNumberStream:input_type -> demo.GetRandomNumberRequest
-	1, // 3: demo.RandomNumber.GetRandomNumber:output_type -> demo.GetRandomNumberResponse
-	0, // 4: demo.RandomNumber.GetRandomNumberStream:output_type -> demo.GetRandomNumberRequest
-	3, // [3:5] is the sub-list for method output_type
-	1, // [1:3] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	4, // 0: demo.GetRandomNumberResponse.time:type_name -> google.protobuf.Timestamp
+	4, // 1: demo.GetRandomNumberStreamResponse.time:type_name -> google.protobuf.Timestamp
+	0, // 2: demo.RandomNumber.GetRandomNumber:input_type -> demo.GetRandomNumberRequest
+	2, // 3: demo.RandomNumber.GetRandomNumberStream:input_type -> demo.GetRandomNumberStreamRequest
+	1, // 4: demo.RandomNumber.GetRandomNumber:output_type -> demo.GetRandomNumberResponse
+	3, // 5: demo.RandomNumber.GetRandomNumberStream:output_type -> demo.GetRandomNumberStreamResponse
+	4, // [4:6] is the sub-list for method output_type
+	2, // [2:4] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_demo_proto_init() }
@@ -209,6 +326,30 @@ func file_demo_proto_init() {
 				return nil
 			}
 		}
+		file_demo_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetRandomNumberStreamRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_demo_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetRandomNumberStreamResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -216,7 +357,7 @@ func file_demo_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_demo_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -243,7 +384,7 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type RandomNumberClient interface {
 	GetRandomNumber(ctx context.Context, in *GetRandomNumberRequest, opts ...grpc.CallOption) (*GetRandomNumberResponse, error)
-	GetRandomNumberStream(ctx context.Context, in *GetRandomNumberRequest, opts ...grpc.CallOption) (RandomNumber_GetRandomNumberStreamClient, error)
+	GetRandomNumberStream(ctx context.Context, in *GetRandomNumberStreamRequest, opts ...grpc.CallOption) (RandomNumber_GetRandomNumberStreamClient, error)
 }
 
 type randomNumberClient struct {
@@ -263,7 +404,7 @@ func (c *randomNumberClient) GetRandomNumber(ctx context.Context, in *GetRandomN
 	return out, nil
 }
 
-func (c *randomNumberClient) GetRandomNumberStream(ctx context.Context, in *GetRandomNumberRequest, opts ...grpc.CallOption) (RandomNumber_GetRandomNumberStreamClient, error) {
+func (c *randomNumberClient) GetRandomNumberStream(ctx context.Context, in *GetRandomNumberStreamRequest, opts ...grpc.CallOption) (RandomNumber_GetRandomNumberStreamClient, error) {
 	stream, err := c.cc.NewStream(ctx, &_RandomNumber_serviceDesc.Streams[0], "/demo.RandomNumber/GetRandomNumberStream", opts...)
 	if err != nil {
 		return nil, err
@@ -279,7 +420,7 @@ func (c *randomNumberClient) GetRandomNumberStream(ctx context.Context, in *GetR
 }
 
 type RandomNumber_GetRandomNumberStreamClient interface {
-	Recv() (*GetRandomNumberRequest, error)
+	Recv() (*GetRandomNumberStreamResponse, error)
 	grpc.ClientStream
 }
 
@@ -287,8 +428,8 @@ type randomNumberGetRandomNumberStreamClient struct {
 	grpc.ClientStream
 }
 
-func (x *randomNumberGetRandomNumberStreamClient) Recv() (*GetRandomNumberRequest, error) {
-	m := new(GetRandomNumberRequest)
+func (x *randomNumberGetRandomNumberStreamClient) Recv() (*GetRandomNumberStreamResponse, error) {
+	m := new(GetRandomNumberStreamResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -298,7 +439,7 @@ func (x *randomNumberGetRandomNumberStreamClient) Recv() (*GetRandomNumberReques
 // RandomNumberServer is the server API for RandomNumber service.
 type RandomNumberServer interface {
 	GetRandomNumber(context.Context, *GetRandomNumberRequest) (*GetRandomNumberResponse, error)
-	GetRandomNumberStream(*GetRandomNumberRequest, RandomNumber_GetRandomNumberStreamServer) error
+	GetRandomNumberStream(*GetRandomNumberStreamRequest, RandomNumber_GetRandomNumberStreamServer) error
 }
 
 // UnimplementedRandomNumberServer can be embedded to have forward compatible implementations.
@@ -308,7 +449,7 @@ type UnimplementedRandomNumberServer struct {
 func (*UnimplementedRandomNumberServer) GetRandomNumber(context.Context, *GetRandomNumberRequest) (*GetRandomNumberResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRandomNumber not implemented")
 }
-func (*UnimplementedRandomNumberServer) GetRandomNumberStream(*GetRandomNumberRequest, RandomNumber_GetRandomNumberStreamServer) error {
+func (*UnimplementedRandomNumberServer) GetRandomNumberStream(*GetRandomNumberStreamRequest, RandomNumber_GetRandomNumberStreamServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetRandomNumberStream not implemented")
 }
 
@@ -335,7 +476,7 @@ func _RandomNumber_GetRandomNumber_Handler(srv interface{}, ctx context.Context,
 }
 
 func _RandomNumber_GetRandomNumberStream_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(GetRandomNumberRequest)
+	m := new(GetRandomNumberStreamRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
@@ -343,7 +484,7 @@ func _RandomNumber_GetRandomNumberStream_Handler(srv interface{}, stream grpc.Se
 }
 
 type RandomNumber_GetRandomNumberStreamServer interface {
-	Send(*GetRandomNumberRequest) error
+	Send(*GetRandomNumberStreamResponse) error
 	grpc.ServerStream
 }
 
@@ -351,7 +492,7 @@ type randomNumberGetRandomNumberStreamServer struct {
 	grpc.ServerStream
 }
 
-func (x *randomNumberGetRandomNumberStreamServer) Send(m *GetRandomNumberRequest) error {
+func (x *randomNumberGetRandomNumberStreamServer) Send(m *GetRandomNumberStreamResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 

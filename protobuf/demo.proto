@@ -8,7 +8,7 @@ import "google/protobuf/timestamp.proto";
 
 service RandomNumber {
   rpc GetRandomNumber (GetRandomNumberRequest) returns (GetRandomNumberResponse) {}
-  rpc GetRandomNumberStream (GetRandomNumberRequest) returns (stream GetRandomNumberRequest) {}
+  rpc GetRandomNumberStream (GetRandomNumberStreamRequest) returns (stream GetRandomNumberStreamResponse) {}
 }
 
 message GetRandomNumberRequest {}
@@ -17,4 +17,11 @@ message GetRandomNumberResponse {
   google.protobuf.Timestamp time = 2;
 }
 
+message GetRandomNumberStreamRequest {
+  int64 count = 1;
+}
+message GetRandomNumberStreamResponse {
+  int64 random_number = 1;
+  google.protobuf.Timestamp time = 2;
+}
 
