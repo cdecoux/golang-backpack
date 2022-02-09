@@ -6,16 +6,15 @@ option go_package = "./demo";
 
 import "google/protobuf/timestamp.proto";
 
-service DemoServer {
-  rpc Demo (stream DemoRequest) returns (stream DemoResponse) {}
+service RandomNumber {
+  rpc GetRandomNumber (GetRandomNumberRequest) returns (GetRandomNumberResponse) {}
+  rpc GetRandomNumberStream (GetRandomNumberRequest) returns (stream GetRandomNumberRequest) {}
 }
 
-message DemoRequest {}
-
-message DemoResponse {
-  google.protobuf.Timestamp time = 1;
-  int64 random_number = 2;
+message GetRandomNumberRequest {}
+message GetRandomNumberResponse {
+  int64 random_number = 1;
+  google.protobuf.Timestamp time = 2;
 }
-
 
 
