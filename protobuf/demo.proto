@@ -1,0 +1,27 @@
+syntax = "proto3";
+package demo;
+
+// Golang Options
+option go_package = "./demo";
+
+import "google/protobuf/timestamp.proto";
+
+service RandomNumber {
+  rpc GetRandomNumber (GetRandomNumberRequest) returns (GetRandomNumberResponse) {}
+  rpc GetRandomNumberStream (GetRandomNumberStreamRequest) returns (stream GetRandomNumberStreamResponse) {}
+}
+
+message GetRandomNumberRequest {}
+message GetRandomNumberResponse {
+  int64 random_number = 1;
+  google.protobuf.Timestamp time = 2;
+}
+
+message GetRandomNumberStreamRequest {
+  int64 count = 1;
+}
+message GetRandomNumberStreamResponse {
+  int64 random_number = 1;
+  google.protobuf.Timestamp time = 2;
+}
+
